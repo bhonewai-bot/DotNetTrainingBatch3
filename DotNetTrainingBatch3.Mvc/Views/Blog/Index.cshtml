@@ -1,18 +1,30 @@
-@model System.Collections.Generic.List<DotNetTrainingBatch3.Database.Models.TblBlog>
+@model List<TblBlog>
 
-@{
-    Layout = null;
-}
+<h1>Blog List</h1>
 
-<!DOCTYPE html>
+<a href="/blog/create" class="btn btn-success">New Blog</a>
 
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
-      
-</div>
-</body>
-</html>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.BlogId</td>
+                <td>@item.BlogTitle</td>
+                <td>@item.BlogAuthor</td>
+                <td>
+                    <a href="/blog/edit/@item.BlogId" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="/blog/delete/@item.BlogId" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

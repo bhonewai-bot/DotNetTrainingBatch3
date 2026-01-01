@@ -1,18 +1,17 @@
 @model TblBlog
 
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
-      
-</div>
-</body>
-</html>
+<form action="/blog/update/@Model.BlogId" method="post">
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-control" name="BlogTitle" value="@Model.BlogTitle">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Author</label>
+        <input type="text" class="form-control" name="BlogAuthor" value="@Model.BlogAuthor">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Content</label>
+        <textarea class="form-control" name="BlogContent" rows="3">@Model.BlogContent</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>

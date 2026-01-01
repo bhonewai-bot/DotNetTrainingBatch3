@@ -17,7 +17,7 @@
     <textarea class="form-control" id="txtContent" rows="3"></textarea>
 </div>
 <a href="/BlogAjax" class="btn btn-secondary">Cancel</a>
-<button type="button" class="btn btn-primary" id="btnSave">Update</button>
+<button type="button" class="btn btn-primary" id="btnUpdate">Update</button>
 
 @section scripts
 {
@@ -32,7 +32,6 @@
                 url: `/BlogAjax/Edit/${blogId}`,
                 method: "GET",
                 success: (response) => {
-                    console.log(response);
                     $('#txtTitle').val(response.blogTitle);
                     $('#txtAuthor').val(response.blogAuthor);
                     $('#txtContent').val(response.blogContent);
@@ -42,5 +41,29 @@
                 }
             });
         }
+        
+        $('#btnUpdate').click(function () {
+            const blogId = $('#hfBlogId').val();
+            const blogData = {
+                BlogTitle: $('#txtTitle').val(),
+                BlogAuthor: $('#txtAuthor').val(),
+                BlogContent: $('#txtContent').val(),
+            };
+            
+            $.ajax({
+                url: `/BlogAjax/Update/${blogId}`,
+                data: blogData,
+                method: "POST",
+                success: (response) => {
+                    alert(response.message);
+                    if (response.isSuccess) {
+                        window.location.href = "/BlogAjax";
+                    }
+                },
+                error: (xhr) => {
+                    console.error(xhr.responseText);
+                }
+            })
+        })
     </script>
 }

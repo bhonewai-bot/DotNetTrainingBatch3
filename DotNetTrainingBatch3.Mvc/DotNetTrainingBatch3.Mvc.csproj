@@ -14,4 +14,9 @@
       <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.22" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Product\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Product\Index.cshtml" />
+    </ItemGroup>
+
 </Project>

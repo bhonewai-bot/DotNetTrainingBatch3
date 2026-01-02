@@ -17,6 +17,8 @@ public partial class DotNetTrainingBatch3DbContext : DbContext
 
     public virtual DbSet<TblBlog> TblBlogs { get; set; }
 
+    public virtual DbSet<TblExpense> TblExpenses { get; set; }
+
     public virtual DbSet<TblProduct> TblProducts { get; set; }
 
     public virtual DbSet<TblSale> TblSales { get; set; }
@@ -39,6 +41,21 @@ public partial class DotNetTrainingBatch3DbContext : DbContext
             entity.Property(e => e.BlogContent).IsUnicode(false);
             entity.Property(e => e.BlogTitle)
                 .HasMaxLength(255)
+                .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<TblExpense>(entity =>
+        {
+            entity.HasKey(e => e.ExpenseId).HasName("PK__Tbl_Expe__1445CFD348A7DFE2");
+
+            entity.ToTable("Tbl_Expense");
+
+            entity.Property(e => e.Amount).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.Category)
+                .HasMaxLength(20)
+                .IsUnicode(false);
+            entity.Property(e => e.Note)
+                .HasMaxLength(100)
                 .IsUnicode(false);
         });
 

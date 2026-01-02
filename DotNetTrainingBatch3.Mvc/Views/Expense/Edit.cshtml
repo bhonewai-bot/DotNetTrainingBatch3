@@ -1,0 +1,67 @@
+<input type="hidden" id="hfExpenseId" value="@ViewBag.ExpenseId" />
+
+<div class="mb-3">
+    <label class="txtCategory">Category</label>
+    <input type="text" class="form-control" id="txtCategory">
+</div>
+<div class="mb-3">
+    <label class="txtAmount">Amount</label>
+    <input type="number" class="form-control" id="txtAmount">
+</div>
+<div class="mb-3">
+    <label class="txtNote">Note</label>
+    <input type="text" class="form-control" id="txtNote">
+</div>
+<a href="/Expense" class="btn btn-secondary">Cancel</a>
+<button type="button" class="btn btn-success" id="btnUpdate">Update</button>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            loadData();
+        });
+        
+        function loadData() {
+            const expenseId = $('#hfExpenseId').val();
+            
+            $.ajax({
+                url: `/Expense/GetExpense/${expenseId}`,
+                method: "GET",
+                success: (response) => {
+                    console.log(response);
+                    $('#txtCategory').val(response.category);
+                    $('#txtAmount').val(response.amount);
+                    $('#txtNote').val(response.note);
+                },
+                error: (xhr) => {
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+        
+        $('#btnUpdate').click(function () {
+            const expenseId = $('#hfExpenseId').val();
+
+            const expense = {
+                category: $('#txtCategory').val(),
+                amount: $('#txtAmount').val(),
+                note: $('#txtNote').val(),
+            };
+            
+            $.ajax({
+                url: `/Expense/Update/${expenseId}`,
+                method: "POST",
+                data: expense,
+                success: (response) => {
+                    if (response.isSuccess) {
+                        window.location.href = "/Expense"
+                    }
+                },
+                error: (xhr) => {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    </script>
+}

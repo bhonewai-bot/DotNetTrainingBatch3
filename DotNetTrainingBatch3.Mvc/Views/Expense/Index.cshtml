@@ -1,0 +1,66 @@
+@if (TempData["StatusMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["StatusMessage"]</div>
+}
+
+<a href="/Expense/Create" class="btn btn-success">Create New Expense</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Note</th>
+            <th>#</th>
+        </tr>
+    </thead>
+    <tbody id="expenseTb"></tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            loadData();
+        });
+        
+        function loadData() {
+            $.ajax({
+                url: "/Expense/List",
+                method: "GET",
+                success: (response) => {
+                    let tdRows = '';
+                    response.forEach(item => {
+                        tdRows += `
+                            <tr>
+                                <td>${item.category}</td>
+                                <td>${item.amount}</td>
+                                <td>${item.note}</td>
+                                <td>
+                                    <a href="/Expense/Edit/${item.expenseId}" class="btn btn-warning">Edit</a>                                
+                                    <button class="btn btn-danger" onclick="deleteExpense(${item.expenseId})">Delete</button>                                
+                                </td>
+                            </tr>
+                        `
+                    });
+                    $('#expenseTb').html(tdRows);
+                }
+            });
+        }
+        
+        function deleteExpense(id) {
+            $.ajax({
+                url: `/Expense/Delete/${id}`,
+                method: "POST",
+                success: (response) => {
+                    if (response.isSuccess) {
+                        loadData();
+                    }
+                },
+                error: (xhr) => {
+                    console.error(xhr.responseText);
+                }
+            })
+        }
+    </script>
+}

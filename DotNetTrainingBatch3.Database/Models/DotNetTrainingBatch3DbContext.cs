@@ -19,6 +19,8 @@ public partial class DotNetTrainingBatch3DbContext : DbContext
 
     public virtual DbSet<TblProduct> TblProducts { get; set; }
 
+    public virtual DbSet<TblSale> TblSales { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server=.;Database=DotNetTrainingBatch3Db;User ID=sa;Password=sasa@123;TrustServerCertificate=True;");
@@ -50,6 +52,17 @@ public partial class DotNetTrainingBatch3DbContext : DbContext
             entity.Property(e => e.ProductName)
                 .HasMaxLength(50)
                 .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<TblSale>(entity =>
+        {
+            entity.HasKey(e => e.SaleId).HasName("PK__Tbl_Sale__1EE3C3FFA253D535");
+
+            entity.ToTable("Tbl_Sale");
+
+            entity.Property(e => e.SaleDate)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
         });
 
         OnModelCreatingPartial(modelBuilder);

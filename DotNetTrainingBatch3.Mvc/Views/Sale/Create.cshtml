@@ -1,0 +1,73 @@
+@model List<TblProduct>
+
+<div class="mb-3">
+    <label for="txtProductName" class="form-label">Product Name</label>
+    <select class="form-control" id="txtProductName">
+        <option value="">Select Product</option>
+        @foreach (var product in Model)
+        {
+            <option value="@product.ProductId" data-price="@product.Price">
+                @product.ProductName - ฿@product.Price
+            </option>
+        }
+    </select>
+</div>
+<div class="mb-3">
+    <label for="txtQuantity" class="form-label">Quantity</label>
+    <input type="number" class="form-control" id="txtQuantity">
+</div>
+<div class="mb-3">
+    <label for="txtTotal" class="form-label">Total</label>
+    <input type="text" class="form-control" id="txtTotal" readonly>
+</div>
+<div class="mb-3">
+    <label for="txtDate" class="form-label">Date</label>
+    <input type="date" class="form-control" id="txtDate">
+</div>
+<a href="/Sale" class="btn btn-secondary">Cancel</a>
+<button type="button" class="btn btn-primary" id="btnSave">Save</button>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            const today = new Date().toISOString().split('T')[0];
+            $('#txtDate').val(today);
+
+            $('#txtProductName, #txtQuantity').on('change input', function() {
+                calculateTotal();
+            });
+        });
+        
+        function calculateTotal() {
+            const selectedOption = $('#txtProductName option:selected');
+            const price = parseFloat(selectedOption.data('price')) || 0;
+            const quantity = parseInt($('#txtQuantity').val()) || 0;
+            const total = price * quantity;
+
+            $('#txtTotal').val('฿' + total.toFixed(2));
+        }
+        
+        $('#btnSave').click(function () {
+            const saleData = {
+                productId: $('#txtProductName').val(),
+                quantity: $('#txtQuantity').val(),
+                saleDate: $('#txtDate').val(),
+            };
+            
+            $.ajax({
+                url: "/Sale/Save",
+                method: "POST",
+                data: saleData,
+                success: (response) => {
+                    if (response.isSuccess) {
+                        window.location.href = "/Sale";
+                    }
+                },
+                error: (xhr) => {
+                    console.error(xhr.responseText);
+                }
+            })
+        })
+    </script>
+}

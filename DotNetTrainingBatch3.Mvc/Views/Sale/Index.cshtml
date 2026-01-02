@@ -1,0 +1,76 @@
+@if (TempData["StatusMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["StatusMessage"]</div>
+}
+
+<a href="/Sale/Create" class="btn btn-success">Create New Sale</a>
+
+<table class="table table-striped mb-3">
+    <thead>
+    <tr>
+        <td>Product</td>
+        <td>Quantity</td>
+        <td>Total</td>
+        <td>Date</td>
+        <td>Actions</td>
+    </tr>
+    </thead>
+    <tbody id="saleTb"></tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            loadData();
+        });
+        
+        function loadData() {
+            $.ajax({
+                url: "/Sale/List/",
+                method: "GET",
+                success: (response) => {
+                    console.log(response);
+                    let tableRows = '';
+                    response.forEach(item => {
+                        tableRows += `
+                            <tr id="sale-row-${item.saleId}">
+                                <td>${item.productName}</td>
+                                <td>${item.quantity}</td>
+                                <td>${item.total.toFixed(2)}</td>
+                                <td>${new Date(item.saleDate).toLocaleDateString()}</td>
+                                <td>
+                                    <a href="/Sale/EditPage/${item.saleId}" class="btn btn-warning">Edit</a>
+                                    <button type="button" class="btn btn-danger" onclick="deleteSale(${item.saleId})">Delete</button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                    $('#saleTb').html(tableRows);
+                },
+                error: (xhr) => {
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+        
+        function deleteSale(id) {
+            if (!confirm("Are you sure you want to delete?")) {
+                return;
+            }
+            
+            $.ajax({
+                url: `/Sale/Delete/${id}`,
+                method: "POST",
+                success: (response) => {
+                    if (response.isSuccess) {
+                        loadData();
+                    }
+                },
+                error: (xhr) => {
+                    console.error(xhr.responseText);
+                }
+            })
+        }
+    </script>
+}

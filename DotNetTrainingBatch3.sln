@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetTrainingBatch3.Databa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetTrainingBatch3.Mvc", "DotNetTrainingBatch3.Mvc\DotNetTrainingBatch3.Mvc.csproj", "{B0F37D08-13D5-4128-A482-772184601B3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetTrainingBatch3.SignalRChat", "DotNetTrainingBatch3.SignalRChat\DotNetTrainingBatch3.SignalRChat.csproj", "{DD3AC17F-C926-4C6B-9D27-48423EAFB487}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetTrainingBatch3.SignalRchat2", "DotNetTrainingBatch3.SignalRchat2\DotNetTrainingBatch3.SignalRchat2.csproj", "{38680276-EBD8-4695-A9D0-8F191AB6463E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{B0F37D08-13D5-4128-A482-772184601B3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0F37D08-13D5-4128-A482-772184601B3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0F37D08-13D5-4128-A482-772184601B3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD3AC17F-C926-4C6B-9D27-48423EAFB487}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD3AC17F-C926-4C6B-9D27-48423EAFB487}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD3AC17F-C926-4C6B-9D27-48423EAFB487}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD3AC17F-C926-4C6B-9D27-48423EAFB487}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38680276-EBD8-4695-A9D0-8F191AB6463E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38680276-EBD8-4695-A9D0-8F191AB6463E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38680276-EBD8-4695-A9D0-8F191AB6463E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38680276-EBD8-4695-A9D0-8F191AB6463E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "SignalR Chat";
+}
+
+<div class="container">
+    <h3>💬 Real-Time Chat</h3>
+
+    <div class="row p-1">
+        <div class="col-2">User</div>
+        <div class="col-6">
+            <input type="text" id="userInput" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row p-1">
+        <div class="col-2">Message</div>
+        <div class="col-6">
+            <input type="text" id="messageInput" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row p-1">
+        <div class="col-8 text-end">
+            <input type="button" id="sendButton" class="btn btn-primary"
+                   value="Send Message" />
+        </div>
+    </div>
+
+    <hr />
+
+    <ul id="messagesList"></ul>
+</div>
+
+@section scripts
+{
+    <script src="https://cdn.jsdelivr.net/npm/@@microsoft/signalr@@8.0.0/dist/browser/signalr.min.js"></script>
+    <script src="~/js/chat.js"></script>
+}

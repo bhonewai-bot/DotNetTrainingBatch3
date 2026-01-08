@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetTrainingBatch3.Signal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetTrainingBatch3.SignalRchat2", "DotNetTrainingBatch3.SignalRchat2\DotNetTrainingBatch3.SignalRchat2.csproj", "{38680276-EBD8-4695-A9D0-8F191AB6463E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetTrainingBatch3.RealtimeNotification", "DotNetTrainingBatch3.RealtimeNotification\DotNetTrainingBatch3.RealtimeNotification.csproj", "{51CE75F2-78EC-4EB8-9ABE-BA1DA652245F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{38680276-EBD8-4695-A9D0-8F191AB6463E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38680276-EBD8-4695-A9D0-8F191AB6463E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38680276-EBD8-4695-A9D0-8F191AB6463E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51CE75F2-78EC-4EB8-9ABE-BA1DA652245F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51CE75F2-78EC-4EB8-9ABE-BA1DA652245F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51CE75F2-78EC-4EB8-9ABE-BA1DA652245F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51CE75F2-78EC-4EB8-9ABE-BA1DA652245F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

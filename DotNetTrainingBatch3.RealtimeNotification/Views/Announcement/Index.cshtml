@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "Announcement Page";
+}
+
+<form method="post" asp-action="Send">
+    <div class="container mt-4">
+        <h4>📤 Send Announcement</h4>
+        
+        <div class="row mb-2">
+            <div class="col-2">Title</div>
+            <div class="col-6">
+                <input name="Title" class="form-control" />
+            </div>
+        </div>
+        
+        <div class="row mb-2">
+            <div class="col-2">Content</div>
+            <div class="col-6">
+                <input name="Content" class="form-control" />
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-8 text-end">
+                <button class="btn btn-primary">Send Announcement</button>
+            </div>
+        </div>
+    </div>
+</form>

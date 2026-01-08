@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Real-time Notifications";
+}
+
+<div class="container mt-4">
+    <h3>📢 Announcements</h3>
+    
+    <div class="mb-2">
+        <span id="notificationCount" class="badge bg-danger">0</span>
+        <button id="showListBtn" class="btn btn-sm btn-primary ms-2">
+            Show Details
+        </button>
+    </div>
+    
+    <ul id="announcementList" class="list-group mt-3"></ul>
+</div>
+
+@section scripts
+{
+    <script src="https://cdn.jsdelivr.net/npm/@@microsoft/signalr@@8.0.0/dist/browser/signalr.min.js"></script>
+    <script src="~/js/notification.js"></script>
+}
